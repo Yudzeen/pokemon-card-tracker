@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.yudzeen.myapplication"
+    namespace = "com.yudzeen.pokemoncardtracker"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.yudzeen.myapplication"
+        applicationId = "com.yudzeen.pokemoncardtracker"
         minSdk = 25
         targetSdk = 36
         versionCode = 1

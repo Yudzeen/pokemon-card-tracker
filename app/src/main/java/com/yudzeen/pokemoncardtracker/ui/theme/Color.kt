@@ -1,4 +1,4 @@
-package com.yudzeen.myapplication.ui.theme
+package com.yudzeen.pokemoncardtracker.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,4 +1,4 @@
-package com.yudzeen.myapplication
+package com.yudzeen.pokemoncardtracker
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.yudzeen.myapplication
+package com.yudzeen.pokemoncardtracker
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.yudzeen.myapplication.ui.theme.PokemonCardTrackerTheme
+import com.yudzeen.pokemoncardtracker.ui.theme.PokemonCardTrackerTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
