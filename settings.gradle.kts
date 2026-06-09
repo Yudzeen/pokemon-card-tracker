@@ -24,4 +24,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Pokemon Card Tracker"
 include(":app")
- 
+include(":core:database")
+include(":data:pokemoncards")
+include(":feature:inventory")
