@@ -83,4 +83,7 @@ dependencies {
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)
     testImplementation(libs.kotlinx.coroutines.test)
+
+    implementation(libs.material)
+    implementation(libs.androidx.compose.material)
 }

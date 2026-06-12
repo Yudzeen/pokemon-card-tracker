@@ -1,7 +1,8 @@
 package com.yudzeen.pokemoncardtracker.feature.inventory.list
 
-import com.yudzeen.pokemoncardtracker.core.ui.PokemonCardUiState
+import com.yudzeen.pokemoncardtracker.core.model.PokemonCard
+import com.yudzeen.pokemoncardtracker.core.model.Series
 
 data class InventoryCardListUiState(
-    val cardList: List<PokemonCardUiState>
+    val seriesToCardListMap: Map<Series, List<PokemonCard>> = emptyMap()
 )

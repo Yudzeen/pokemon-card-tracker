@@ -9,25 +9,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import java.util.UUID
-
-data class PokemonCardUiState(
-    val id: String,
-    val text: String
-)
+import com.yudzeen.pokemoncardtracker.core.model.PokemonCard
+import com.yudzeen.pokemoncardtracker.core.model.sampleList
 
 @Composable
-fun PokemonCardListItem(uiState: PokemonCardUiState, onItemClick: (String) -> Unit, modifier: Modifier = Modifier) {
+fun PokemonCardListItem(pokemonCard: PokemonCard, onItemClick: (String) -> Unit, modifier: Modifier = Modifier) {
     Card(
-        onClick = { onItemClick(uiState.text) }
+        onClick = { onItemClick(pokemonCard.name) }
     ) {
         AsyncImage(
-            model = "https://assets.tcgdex.net/en/swsh/swsh3/136/low.webp",
-            contentDescription = uiState.text,
+            model = pokemonCard.imgLowRes,
+            contentDescription = pokemonCard.name,
             placeholder = painterResource(R.drawable.pokemon_card_back_side),
             modifier = Modifier.size(100.dp)
         )
-        Text(uiState.text)
+        Text(pokemonCard.name)
     }
 }
 
@@ -35,10 +31,7 @@ fun PokemonCardListItem(uiState: PokemonCardUiState, onItemClick: (String) -> Un
 @Composable
 fun PokemonCardListItemPreview() {
     PokemonCardListItem(
-        uiState = PokemonCardUiState(
-            id = UUID.randomUUID().toString(),
-            text = "Pikachu"
-        ),
+        pokemonCard = sampleList.first(),
         onItemClick = { },
     )
 }

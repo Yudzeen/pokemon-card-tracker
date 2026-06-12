@@ -1,21 +1,22 @@
 package com.yudzeen.pokemoncardtracker.feature.inventory.list
 
 import androidx.lifecycle.ViewModel
-import com.yudzeen.pokemoncardtracker.core.ui.PokemonCardUiState
+import com.yudzeen.pokemoncardtracker.core.model.seriesToCardListMap
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import java.util.UUID
+import javax.inject.Inject
 
 @HiltViewModel
 class InventoryCardListViewModel @Inject constructor(): ViewModel() {
 
-    val sampleList = List(10) {
-        PokemonCardUiState(UUID.randomUUID().toString(), "Card #$it")
-    }
-
-    private val _uiState = MutableStateFlow<InventoryCardListUiState>(InventoryCardListUiState(sampleList))
+    private val _uiState = MutableStateFlow(InventoryCardListUiState())
     val uiState = _uiState.asStateFlow()
+
+    init {
+        _uiState.value = InventoryCardListUiState(
+                seriesToCardListMap = seriesToCardListMap
+            )
+    }
 
 }
