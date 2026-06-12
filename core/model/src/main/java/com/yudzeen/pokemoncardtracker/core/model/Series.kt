@@ -1,4 +1,4 @@
-package com.yudzeen.pokemoncardtracker.model
+package com.yudzeen.pokemoncardtracker.core.model
 
 sealed interface Series {
     data object Original: Series

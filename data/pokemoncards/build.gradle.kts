@@ -4,11 +4,7 @@ plugins {
 
 android {
     namespace = "com.yudzeen.pokemoncardtracker.data.pokemoncards"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 25
