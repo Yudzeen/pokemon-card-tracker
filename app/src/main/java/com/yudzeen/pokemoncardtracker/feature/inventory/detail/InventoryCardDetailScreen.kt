@@ -51,6 +51,7 @@ internal fun InventoryCardDetailScreen(uiState: InventoryCardDetailUiState, onTi
                     .clip(RoundedCornerShape(8.dp))
                     .align(Alignment.CenterHorizontally)
             )
+            Text("Name: ${pokemonCard.name}")
             Text("Owned: ${pokemonCard.ownedQuantity}")
             Text("Target: ${pokemonCard.targetQuantity}")
             Text("Series: ${pokemonCard.series}")
