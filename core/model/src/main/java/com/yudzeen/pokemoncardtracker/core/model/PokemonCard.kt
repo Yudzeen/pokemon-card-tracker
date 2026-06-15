@@ -148,6 +148,66 @@ val sampleList = listOf(
         favorite = true,
         imgHighRes = "https://assets.tcgdex.net/en/xy/xy12/88/high.webp",
         imgLowRes = "https://assets.tcgdex.net/en/xy/xy12/88/low.webp"
+    ),
+    PokemonCard(
+        name = "Counter Catcher",
+        series = Series.SunMoon,
+        expansion = Series.Expansion.CrimsonInvasion,
+        category = Category.TRAINER,
+        variant = Variant.REVERSE_HOLO,
+        ownedQuantity = 2,
+        targetQuantity = 2,
+        favorite = true,
+        imgHighRes = "https://assets.tcgdex.net/en/sm/sm4/91/high.webp",
+        imgLowRes = "https://assets.tcgdex.net/en/sm/sm4/91/low.webp"
+    ),
+    PokemonCard(
+        name = "Escape Rope",
+        series = Series.SunMoon,
+        expansion = Series.Expansion.BurningShadows,
+        category = Category.TRAINER,
+        variant = Variant.REVERSE_HOLO,
+        ownedQuantity = 2,
+        targetQuantity = 2,
+        favorite = true,
+        imgHighRes = "https://assets.tcgdex.net/en/sm/sm3/114/high.webp",
+        imgLowRes = "https://assets.tcgdex.net/en/sm/sm3/114/low.webp"
+    ),
+    PokemonCard(
+        name = "Energy Search",
+        series = Series.Original,
+        expansion = Series.Expansion.Fossil,
+        category = Category.TRAINER,
+        variant = Variant.REVERSE_HOLO,
+        ownedQuantity = 2,
+        targetQuantity = 2,
+        favorite = true,
+        imgHighRes = "https://assets.tcgdex.net/en/base/base3/59/high.webp",
+        imgLowRes = "https://assets.tcgdex.net/en/base/base3/59/low.webp"
+    ),
+    PokemonCard(
+        name = "Energy Search",
+        series = Series.DiamondPearl,
+        expansion = Series.Expansion.MajesticDawn,
+        category = Category.TRAINER,
+        variant = Variant.REVERSE_HOLO,
+        ownedQuantity = 2,
+        targetQuantity = 2,
+        favorite = true,
+        imgHighRes = "https://assets.tcgdex.net/en/dp/dp5/90/high.webp",
+        imgLowRes = "https://assets.tcgdex.net/en/dp/dp5/90/low.webp"
+    ),
+    PokemonCard(
+        name = "Pokemon Center Lady",
+        series = Series.SwordShield,
+        expansion = Series.Expansion.ChampionsPath,
+        category = Category.TRAINER,
+        variant = Variant.REVERSE_HOLO,
+        ownedQuantity = 2,
+        targetQuantity = 2,
+        favorite = true,
+        imgHighRes = "https://assets.tcgdex.net/en/swsh/swsh1/176/high.webp",
+        imgLowRes = "https://assets.tcgdex.net/en/swsh/swsh1/176/low.webp"
     )
 )
 

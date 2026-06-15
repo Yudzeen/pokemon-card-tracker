@@ -1,4 +1,4 @@
-package com.yudzeen.pokemoncardtracker.core.ui
+package com.yudzeen.pokemoncardtracker.feature.inventory.list.views
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
@@ -11,11 +11,12 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.yudzeen.pokemoncardtracker.core.model.PokemonCard
 import com.yudzeen.pokemoncardtracker.core.model.sampleList
+import com.yudzeen.pokemoncardtracker.core.ui.R
 
 @Composable
 fun PokemonCardListItem(pokemonCard: PokemonCard, onItemClick: (String) -> Unit, modifier: Modifier = Modifier) {
     Card(
-        onClick = { onItemClick(pokemonCard.name) }
+        onClick = { onItemClick(pokemonCard.id.toString()) }
     ) {
         AsyncImage(
             model = pokemonCard.imgLowRes,

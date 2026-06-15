@@ -1,11 +1,11 @@
-package com.yudzeen.pokemoncardtracker.core.ui
+package com.yudzeen.pokemoncardtracker.feature.inventory.list.views
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,9 +23,13 @@ fun PokemonCardList(seriesToCardListMap: Map<Series, List<PokemonCard>>, onItemC
     ) {
         seriesToCardListMap.forEach { (series, cardList) ->
             stickyHeader { SeriesHeader(series.toString()) }
-            items(1) {
-                LazyRow {
-                    items(cardList) { card ->
+            item {
+                FlowRow(
+                    modifier = Modifier.padding(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    cardList.forEach { card ->
                         PokemonCardListItem(card, onItemClick)
                     }
                 }

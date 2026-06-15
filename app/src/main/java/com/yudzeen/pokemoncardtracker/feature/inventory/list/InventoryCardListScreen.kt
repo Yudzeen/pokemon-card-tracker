@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.yudzeen.pokemoncardtracker.R
 import com.yudzeen.pokemoncardtracker.core.model.seriesToCardListMap
-import com.yudzeen.pokemoncardtracker.core.ui.PokemonCardList
+import com.yudzeen.pokemoncardtracker.feature.inventory.list.views.PokemonCardList
 
 @Composable
 fun InventoryCardListScreen(viewModel: InventoryCardListViewModel, onItemClick: (String) -> Unit, modifier: Modifier = Modifier) {
