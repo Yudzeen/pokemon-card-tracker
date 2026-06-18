@@ -11,4 +11,7 @@ sealed interface Route: NavKey {
 
     @Serializable
     data class InventoryCardDetailRoute(val cardId: String): Route, NavKey
+
+    @Serializable
+    data object InventoryCardAddRoute: Route, NavKey
 }

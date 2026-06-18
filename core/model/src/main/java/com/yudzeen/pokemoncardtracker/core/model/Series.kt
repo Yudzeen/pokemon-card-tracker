@@ -1,163 +1,178 @@
 package com.yudzeen.pokemoncardtracker.core.model
 
-sealed interface Series {
-    data object Original: Series
-    data object Neo: Series
-    data object LegendaryCollection: Series
-    data object ECard: Series
-    data object EX: Series
-    data object DiamondPearl: Series
-    data object Platinum: Series
-    data object HeartGoldSoulSilver: Series
-    data object BlackWhite: Series
-    data object XY: Series
-    data object SunMoon: Series
-    data object SwordShield: Series
-    data object ScarletViolet: Series
-    data object MegaEvolution: Series
+enum class Series {
+    Original,
+    Neo,
+    LegendaryCollection,
+    ECard,
+    EX,
+    DiamondPearl,
+    Platinum,
+    HeartGoldSoulSilver,
+    BlackWhite,
+    XY,
+    SunMoon,
+    SwordShield,
+    ScarletViolet,
+    MegaEvolution;
 
-    sealed class Expansion(val series: Series) {
+    enum class Expansion(val series: Series) {
+        // Original
+        Base(Original),
+        Jungle(Original),
+        Fossil(Original),
+        Base2(Original),
+        TeamRocket(Original),
+        GymHeroes(Original),
+        GymChallenge(Original),
 
-        data object Base: Expansion(Original)
-        data object Jungle: Expansion(Original)
-        data object Fossil: Expansion(Original)
-        data object Base2: Expansion(Original)
-        data object TeamRocket: Expansion(Original)
-        data object GymHeroes: Expansion(Original)
-        data object GymChallenge: Expansion(Original)
+        // Neo
+        NeoGenesis(Neo),
+        NeoDiscovery(Neo),
+        NeoRevelation(Neo),
+        NeoDestiny(Neo),
 
-        data object NeoGenesis: Expansion(Neo)
-        data object NeoDiscovery: Expansion(Neo)
-        data object NeoRevelation: Expansion(Neo)
-        data object NeoDestiny: Expansion(Neo)
+        // LegendaryCollection
+        LegendaryCollection(Series.LegendaryCollection),
 
-        data object LegendaryCollection: Expansion(Series.LegendaryCollection)
+        // ECard
+        Expedition(ECard),
+        Aquapolis(ECard),
+        Skyridge(ECard),
 
-        data object Expedition: Expansion(ECard)
-        data object Aquapolis: Expansion(ECard)
-        data object Skyridge: Expansion(ECard)
+        // EX
+        RubySapphire(EX),
+        Sandstorm(EX),
+        Dragon(EX),
+        TeamMagmaVsTeamAqua(EX),
+        HiddenLegends(EX),
+        FireRedLeafGreen(EX),
+        TeamRocketReturns(EX),
+        Deoxys(EX),
+        Emerald(EX),
+        UnseenForces(EX),
+        DeltaSpecies(EX),
+        LegendMaker(EX),
+        HolonPhantoms(EX),
+        CrystalGuardians(EX),
+        DragonFrontiers(EX),
+        PowerKeepers(EX),
 
-        data object RubySapphire: Expansion(EX)
-        data object Sandstorm: Expansion(EX)
-        data object Dragon: Expansion(EX)
-        data object TeamMagmaVsTeamAqua: Expansion(EX)
-        data object HiddenLegends: Expansion(EX)
-        data object FireRedLeafGreen: Expansion(EX)
-        data object TeamRocketReturns: Expansion(EX)
-        data object Deoxys: Expansion(EX)
-        data object Emerald: Expansion(EX)
-        data object UnseenForces: Expansion(EX)
-        data object DeltaSpecies: Expansion(EX)
-        data object LegendMaker: Expansion(EX)
-        data object HolonPhantoms: Expansion(EX)
-        data object CrystalGuardians: Expansion(EX)
-        data object DragonFrontiers: Expansion(EX)
-        data object PowerKeepers: Expansion(EX)
+        // DiamondPearl
+        DiamondPearl(Series.DiamondPearl),
+        MysteriousTreasures(Series.DiamondPearl),
+        SecretWonders(Series.DiamondPearl),
+        GreatEncounters(Series.DiamondPearl),
+        MajesticDawn(Series.DiamondPearl),
+        LegendsAwakened(Series.DiamondPearl),
+        Stormfront(Series.DiamondPearl),
 
-        data object DiamondPearl: Expansion(Series.DiamondPearl)
-        data object MysteriousTreasures: Expansion(Series.DiamondPearl)
-        data object SecretWonders: Expansion(Series.DiamondPearl)
-        data object GreatEncounters: Expansion(Series.DiamondPearl)
-        data object MajesticDawn: Expansion(Series.DiamondPearl)
-        data object LegendsAwakened: Expansion(Series.DiamondPearl)
-        data object Stormfront: Expansion(Series.DiamondPearl)
+        // Platinum
+        Platinum(Series.Platinum),
+        RisingRivals(Series.Platinum),
+        SupremeVictors(Series.Platinum),
+        Arceus(Series.Platinum),
 
-        data object Platinum: Expansion(Series.Platinum)
-        data object RisingRivals: Expansion(Series.Platinum)
-        data object SupremeVictors: Expansion(Series.Platinum)
-        data object Arceus: Expansion(Series.Platinum)
+        // HeartGoldSoulSilver
+        HeartGoldSoulSilver(Series.HeartGoldSoulSilver),
+        Unleashed(Series.HeartGoldSoulSilver),
+        Undaunted(Series.HeartGoldSoulSilver),
+        Triumphant(Series.HeartGoldSoulSilver),
+        CallOfLegends(Series.HeartGoldSoulSilver),
 
-        data object HeartGoldSoulSilver: Expansion(Series.HeartGoldSoulSilver)
-        data object Unleashed: Expansion(Series.HeartGoldSoulSilver)
-        data object Undaunted: Expansion(Series.HeartGoldSoulSilver)
-        data object Triumphant: Expansion(Series.HeartGoldSoulSilver)
-        data object CallOfLegends: Expansion(Series.HeartGoldSoulSilver)
+        // BlackWhite
+        BlackWhite(Series.BlackWhite),
+        EmergingPowers(Series.BlackWhite),
+        NobleVictories(Series.BlackWhite),
+        NextDestinies(Series.BlackWhite),
+        DarkExplorers(Series.BlackWhite),
+        DragonsExalted(Series.BlackWhite),
+        DragonVault(Series.BlackWhite),
+        BoundariesCrossed(Series.BlackWhite),
+        PlasmaStorm(Series.BlackWhite),
+        PlasmaFreeze(Series.BlackWhite),
+        PlasmaBlast(Series.BlackWhite),
+        LegendaryTreasures(Series.BlackWhite),
 
-        data object BlackWhite: Expansion(Series.BlackWhite)
-        data object EmergingPowers: Expansion(Series.BlackWhite)
-        data object NobleVictories: Expansion(Series.BlackWhite)
-        data object NextDestinies: Expansion(Series.BlackWhite)
-        data object DarkExplorers: Expansion(Series.BlackWhite)
-        data object DragonsExalted: Expansion(Series.BlackWhite)
-        data object DragonVault: Expansion(Series.BlackWhite)
-        data object BoundariesCrossed: Expansion(Series.BlackWhite)
-        data object PlasmaStorm: Expansion(Series.BlackWhite)
-        data object PlasmaFreeze: Expansion(Series.BlackWhite)
-        data object PlasmaBlast: Expansion(Series.BlackWhite)
-        data object LegendaryTreasures: Expansion(Series.BlackWhite)
+        // XY
+        KalosStarterSet(Series.XY),
+        XY(Series.XY),
+        Flashfire(Series.XY),
+        FuriousFists(Series.XY),
+        PhantomForces(Series.XY),
+        PrimalClash(Series.XY),
+        DoubleCrisis(Series.XY),
+        RoaringSkies(Series.XY),
+        AncientOrigins(Series.XY),
+        Breakthrough(Series.XY),
+        Breakpoint(Series.XY),
+        Generations(Series.XY),
+        FatesCollide(Series.XY),
+        SteamSiege(Series.XY),
+        Evolutions(Series.XY),
 
-        data object KalosStarterSet: Expansion(Series.XY)
-        data object XY: Expansion(Series.XY)
-        data object Flashfire: Expansion(Series.XY)
-        data object FuriousFists: Expansion(Series.XY)
-        data object PhantomForces: Expansion(Series.XY)
-        data object PrimalClash: Expansion(Series.XY)
-        data object DoubleCrisis: Expansion(Series.XY)
-        data object RoaringSkies: Expansion(Series.XY)
-        data object AncientOrigins: Expansion(Series.XY)
-        data object Breakthrough: Expansion(Series.XY)
-        data object Breakpoint: Expansion(Series.XY)
-        data object Generations: Expansion(Series.XY)
-        data object FatesCollide: Expansion(Series.XY)
-        data object SteamSiege: Expansion(Series.XY)
-        data object Evolutions: Expansion(Series.XY)
+        // SunMoon
+        SunMoon(Series.SunMoon),
+        GuardiansRising(Series.SunMoon),
+        BurningShadows(Series.SunMoon),
+        ShiningLegends(Series.SunMoon),
+        CrimsonInvasion(Series.SunMoon),
+        UltraPrism(Series.SunMoon),
+        ForbiddenLight(Series.SunMoon),
+        CelestialStorm(Series.SunMoon),
+        DragonMajesty(Series.SunMoon),
+        LostThunder(Series.SunMoon),
+        TeamUp(Series.SunMoon),
+        DetectivePikachu(Series.SunMoon),
+        UnbrokenBonds(Series.SunMoon),
+        UnifiedMinds(Series.SunMoon),
+        HiddenFates(Series.SunMoon),
+        CosmicEclipse(Series.SunMoon),
 
-        data object SunMoon: Expansion(Series.SunMoon)
-        data object GuardiansRising: Expansion(Series.SunMoon)
-        data object BurningShadows: Expansion(Series.SunMoon)
-        data object ShiningLegends: Expansion(Series.SunMoon)
-        data object CrimsonInvasion: Expansion(Series.SunMoon)
-        data object UltraPrism: Expansion(Series.SunMoon)
-        data object ForbiddenLight: Expansion(Series.SunMoon)
-        data object CelestialStorm: Expansion(Series.SunMoon)
-        data object DragonMajesty: Expansion(Series.SunMoon)
-        data object LostThunder: Expansion(Series.SunMoon)
-        data object TeamUp: Expansion(Series.SunMoon)
-        data object DetectivePikachu: Expansion(Series.SunMoon)
-        data object UnbrokenBonds: Expansion(Series.SunMoon)
-        data object UnifiedMinds: Expansion(Series.SunMoon)
-        data object HiddenFates: Expansion(Series.SunMoon)
-        data object CosmicEclipse: Expansion(Series.SunMoon)
+        // SwordShield
+        SwordShield(Series.SwordShield),
+        RebelClash(Series.SwordShield),
+        DarknessAblaze(Series.SwordShield),
+        ChampionsPath(Series.SwordShield),
+        VividVoltage(Series.SwordShield),
+        ShiningFates(Series.SwordShield),
+        ChillingReign(Series.SwordShield),
+        EvolvingSkies(Series.SwordShield),
+        Celebrations(Series.SwordShield),
+        FusionStrike(Series.SwordShield),
+        BrilliantStars(Series.SwordShield),
+        AstralRadiance(Series.SwordShield),
+        PokemonGo(Series.SwordShield),
+        LostOrigin(Series.SwordShield),
+        SilverTempest(Series.SwordShield),
+        CrownZenith(Series.SwordShield),
 
-        data object SwordShield: Expansion(Series.SwordShield)
-        data object RebelClash: Expansion(Series.SwordShield)
-        data object DarknessAblaze: Expansion(Series.SwordShield)
-        data object ChampionsPath: Expansion(Series.SwordShield)
-        data object VividVoltage: Expansion(Series.SwordShield)
-        data object ShiningFates: Expansion(Series.SwordShield)
-        data object ChillingReign: Expansion(Series.SwordShield)
-        data object EvolvingSkies: Expansion(Series.SwordShield)
-        data object Celebrations: Expansion(Series.SwordShield)
-        data object FusionStrike: Expansion(Series.SwordShield)
-        data object BrilliantStars: Expansion(Series.SwordShield)
-        data object AstralRadiance: Expansion(Series.SwordShield)
-        data object PokemonGo: Expansion(Series.SwordShield)
-        data object LostOrigin: Expansion(Series.SwordShield)
-        data object SilverTempest: Expansion(Series.SwordShield)
-        data object CrownZenith: Expansion(Series.SwordShield)
+        // ScarletViolet
+        ScarletViolet(Series.ScarletViolet),
+        PaldeaEvolved(Series.ScarletViolet),
+        ObsidianFlames(Series.ScarletViolet),
+        SV151(Series.ScarletViolet),
+        ParadoxRift(Series.ScarletViolet),
+        PaldeanFates(Series.ScarletViolet),
+        TemporalForces(Series.ScarletViolet),
+        TwilightMasquerade(Series.ScarletViolet),
+        ShroudedFable(Series.ScarletViolet),
+        StellarCrown(Series.ScarletViolet),
+        SurgingSparks(Series.ScarletViolet),
+        PrismaticEvolutions(Series.ScarletViolet),
+        JourneyTogether(Series.ScarletViolet),
+        DestinedRivals(Series.ScarletViolet),
+        BlackBolt(Series.ScarletViolet),
+        WhiteFlare(Series.ScarletViolet),
 
-        data object ScarletViolet: Expansion(Series.ScarletViolet)
-        data object PaldeaEvolved: Expansion(Series.ScarletViolet)
-        data object ObsidianFlames: Expansion(Series.ScarletViolet)
-        data object SV151: Expansion(Series.ScarletViolet)
-        data object ParadoxRift: Expansion(Series.ScarletViolet)
-        data object PaldeanFates: Expansion(Series.ScarletViolet)
-        data object TemporalForces: Expansion(Series.ScarletViolet)
-        data object TwilightMasquerade: Expansion(Series.ScarletViolet)
-        data object ShroudedFable: Expansion(Series.ScarletViolet)
-        data object StellarCrown: Expansion(Series.ScarletViolet)
-        data object SurgingSparks: Expansion(Series.ScarletViolet)
-        data object PrismaticEvolutions: Expansion(Series.ScarletViolet)
-        data object JourneyTogether: Expansion(Series.ScarletViolet)
-        data object DestinedRivals: Expansion(Series.ScarletViolet)
-        data object BlackBolt: Expansion(Series.ScarletViolet)
-        data object WhiteFlare: Expansion(Series.ScarletViolet)
-
-        data object MegaEvolution: Expansion(Series.MegaEvolution)
-        data object PhantasmalFlames: Expansion(Series.MegaEvolution)
-        data object AscendedHeroes: Expansion(Series.MegaEvolution)
-        data object PerfectOrder: Expansion(Series.MegaEvolution)
-        data object ChaosRising: Expansion(Series.MegaEvolution)
-
+        // MegaEvolution
+        MegaEvolution(Series.MegaEvolution),
+        PhantasmalFlames(Series.MegaEvolution),
+        AscendedHeroes(Series.MegaEvolution),
+        PerfectOrder(Series.MegaEvolution),
+        ChaosRising(Series.MegaEvolution);
     }
 }
+
+val seriesToExpansionMap: Map<Series, List<Series.Expansion>> =
+    Series.Expansion.entries.groupBy { it.series }

@@ -20,28 +20,23 @@ import com.yudzeen.pokemoncardtracker.core.model.seriesToCardListMap
 import com.yudzeen.pokemoncardtracker.feature.inventory.list.views.PokemonCardList
 
 @Composable
-fun InventoryCardListScreen(viewModel: InventoryCardListViewModel, onItemClick: (String) -> Unit, modifier: Modifier = Modifier) {
+fun InventoryCardListScreen(
+    viewModel: InventoryCardListViewModel,
+    onItemClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     InventoryCardListScreen(uiState, onItemClick, modifier)
 }
 
 @Composable
-internal fun InventoryCardListScreen(uiState: InventoryCardListUiState, onItemClick: (String) -> Unit, modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-
+internal fun InventoryCardListScreen(
+    uiState: InventoryCardListUiState,
+    onItemClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Box(modifier = Modifier.fillMaxSize()) {
         PokemonCardList(uiState.seriesToCardListMap, onItemClick)
-
-        FloatingActionButton(
-            onClick = {
-                Toast.makeText(context, "Fab Clicked.", Toast.LENGTH_SHORT).show()
-            },
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(16.dp)
-        ) {
-            Icon(painterResource(R.drawable.ic_add), "Floating action button.")
-        }
     }
 }
 
