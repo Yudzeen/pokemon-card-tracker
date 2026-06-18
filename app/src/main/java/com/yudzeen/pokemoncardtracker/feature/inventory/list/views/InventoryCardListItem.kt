@@ -9,9 +9,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.yudzeen.pokemoncardtracker.R
 import com.yudzeen.pokemoncardtracker.core.model.PokemonCard
 import com.yudzeen.pokemoncardtracker.core.model.sampleList
-import com.yudzeen.pokemoncardtracker.core.ui.R
 
 @Composable
 fun PokemonCardListItem(pokemonCard: PokemonCard, onItemClick: (String) -> Unit, modifier: Modifier = Modifier) {

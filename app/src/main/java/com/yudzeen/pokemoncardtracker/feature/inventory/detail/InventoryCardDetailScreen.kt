@@ -21,8 +21,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
+import com.yudzeen.pokemoncardtracker.R
 import com.yudzeen.pokemoncardtracker.core.model.sampleList
-import com.yudzeen.pokemoncardtracker.core.ui.R
 
 @Composable
 fun InventoryCardDetailScreen(viewModel: InventoryCardDetailViewModel, onTitleChanged: (String) -> Unit) {
