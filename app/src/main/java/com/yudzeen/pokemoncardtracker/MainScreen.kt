@@ -18,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -111,6 +110,7 @@ fun MainScreen() {
                     val viewModel = hiltViewModel<InventoryCardDetailViewModel, InventoryCardDetailViewModel.Factory>(
                         creationCallback = { factory -> factory.create(key) }
                     )
+                    appBarTitle = "Card Detail"
                     InventoryCardDetailScreen(
                         viewModel = viewModel,
                         onTitleChanged = { appBarTitle = it }
@@ -118,10 +118,15 @@ fun MainScreen() {
                 }
                 entry<Route.InventoryCardAddRoute> { key ->
                     val viewModel: InventoryAddCardViewModel = hiltViewModel()
-                    val context = LocalContext.current
                     appBarTitle = "Add Card"
-                    onFabClick = { viewModel.save(context) }
-                    InventoryAddCardScreen(viewModel)
+                    onFabClick = { viewModel.save() }
+                    InventoryAddCardScreen(
+                        viewModel = viewModel,
+                        navigateToCardDetail = { cardId ->
+                            backStack.add(Route.InventoryCardDetailRoute(cardId))
+                            backStack.remove(key)
+                        }
+                    )
                 }
             },
             modifier = Modifier.padding(innerPadding)

@@ -19,7 +19,7 @@ fun PokemonCardListItem(pokemonCard: PokemonCard, onItemClick: (String) -> Unit,
         onClick = { onItemClick(pokemonCard.id.toString()) }
     ) {
         AsyncImage(
-            model = pokemonCard.imgLowRes,
+            model = pokemonCard.imageUri,
             contentDescription = pokemonCard.name,
             placeholder = painterResource(R.drawable.pokemon_card_back_side),
             modifier = Modifier.size(100.dp)

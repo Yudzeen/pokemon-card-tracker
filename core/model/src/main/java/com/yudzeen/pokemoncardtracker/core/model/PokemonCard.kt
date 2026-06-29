@@ -1,6 +1,8 @@
 package com.yudzeen.pokemoncardtracker.core.model
 
+import android.net.Uri
 import java.util.UUID
+import androidx.core.net.toUri
 
 data class PokemonCard(
     val id: UUID = UUID.randomUUID(),
@@ -12,8 +14,7 @@ data class PokemonCard(
     val ownedQuantity: Int,
     val targetQuantity: Int,
     val favorite: Boolean,
-    val imgHighRes: String,
-    val imgLowRes: String
+    val imageUri: Uri
 )
 
 val sampleList = listOf(
@@ -26,8 +27,7 @@ val sampleList = listOf(
         ownedQuantity = 4,
         targetQuantity = 4,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/ecard/ecard1/157/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/ecard/ecard1/157/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/ecard/ecard1/157/high.webp".toUri()
     ),
     PokemonCard(
         name = "Copycat",
@@ -38,8 +38,7 @@ val sampleList = listOf(
         ownedQuantity = 4,
         targetQuantity = 4,
         favorite = false,
-        imgHighRes = "https://assets.tcgdex.net/en/ecard/ecard1/138/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/ecard/ecard1/138/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/ecard/ecard1/138/high.webp".toUri()
     ),
     PokemonCard(
         name = "Rare Candy",
@@ -50,8 +49,7 @@ val sampleList = listOf(
         ownedQuantity = 4,
         targetQuantity = 4,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/swsh/swsh10.5/069/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/swsh/swsh10.5/069/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/swsh/swsh10.5/069/high.webp".toUri()
     ),
     PokemonCard(
         name = "Boss's Orders",
@@ -62,8 +60,7 @@ val sampleList = listOf(
         ownedQuantity = 4,
         targetQuantity = 4,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/swsh/swsh2/154/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/swsh/swsh2/154/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/swsh/swsh2/154/high.webp".toUri()
     ),
     PokemonCard(
         name = "Energy Retrieval",
@@ -74,8 +71,7 @@ val sampleList = listOf(
         ownedQuantity = 1,
         targetQuantity = 4,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/xy/xy12/77/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/xy/xy12/77/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/xy/xy12/77/high.webp".toUri()
     ),
     PokemonCard(
         name = "Judge",
@@ -86,8 +82,7 @@ val sampleList = listOf(
         ownedQuantity = 1,
         targetQuantity = 4,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/xy/xy8/143/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/xy/xy8/143/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/xy/xy8/143/high.webp".toUri()
     ),
     PokemonCard(
         name = "Energy Switch",
@@ -98,8 +93,7 @@ val sampleList = listOf(
         ownedQuantity = 1,
         targetQuantity = 4,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/ex/ex1/82/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/ex/ex1/82/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/ex/ex1/82/high.webp".toUri()
     ),
     PokemonCard(
         name = "Sacred Ash",
@@ -110,8 +104,7 @@ val sampleList = listOf(
         ownedQuantity = 1,
         targetQuantity = 4,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/xy/xy2/96/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/xy/xy2/96/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/xy/xy2/96/high.webp".toUri()
     ),
     PokemonCard(
         name = "Rare Candy",
@@ -122,8 +115,7 @@ val sampleList = listOf(
         ownedQuantity = 1,
         targetQuantity = 4,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/xy/xy5/135/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/xy/xy5/135/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/xy/xy5/135/high.webp".toUri()
     ),
     PokemonCard(
         name = "Super Rod",
@@ -134,8 +126,7 @@ val sampleList = listOf(
         ownedQuantity = 1,
         targetQuantity = 4,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/xy/xy8/149/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/xy/xy8/149/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/xy/xy8/149/high.webp".toUri()
     ),
     PokemonCard(
         name = "Switch",
@@ -146,8 +137,7 @@ val sampleList = listOf(
         ownedQuantity = 2,
         targetQuantity = 2,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/xy/xy12/88/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/xy/xy12/88/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/xy/xy12/88/high.webp".toUri()
     ),
     PokemonCard(
         name = "Counter Catcher",
@@ -158,8 +148,7 @@ val sampleList = listOf(
         ownedQuantity = 2,
         targetQuantity = 2,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/sm/sm4/91/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/sm/sm4/91/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/sm/sm4/91/high.webp".toUri()
     ),
     PokemonCard(
         name = "Escape Rope",
@@ -170,8 +159,7 @@ val sampleList = listOf(
         ownedQuantity = 2,
         targetQuantity = 2,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/sm/sm3/114/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/sm/sm3/114/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/sm/sm3/114/high.webp".toUri()
     ),
     PokemonCard(
         name = "Energy Search",
@@ -182,8 +170,7 @@ val sampleList = listOf(
         ownedQuantity = 2,
         targetQuantity = 2,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/base/base3/59/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/base/base3/59/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/base/base3/59/high.webp".toUri()
     ),
     PokemonCard(
         name = "Energy Search",
@@ -194,8 +181,7 @@ val sampleList = listOf(
         ownedQuantity = 2,
         targetQuantity = 2,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/dp/dp5/90/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/dp/dp5/90/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/dp/dp5/90/high.webp".toUri()
     ),
     PokemonCard(
         name = "Pokemon Center Lady",
@@ -206,8 +192,7 @@ val sampleList = listOf(
         ownedQuantity = 2,
         targetQuantity = 2,
         favorite = true,
-        imgHighRes = "https://assets.tcgdex.net/en/swsh/swsh1/176/high.webp",
-        imgLowRes = "https://assets.tcgdex.net/en/swsh/swsh1/176/low.webp"
+        imageUri = "https://assets.tcgdex.net/en/swsh/swsh1/176/high.webp".toUri()
     )
 )
 

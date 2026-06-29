@@ -42,7 +42,7 @@ internal fun InventoryCardDetailScreen(uiState: InventoryCardDetailUiState, onTi
                 .verticalScroll(rememberScrollState())
         ) {
             AsyncImage(
-                model = pokemonCard.imgHighRes,
+                model = pokemonCard.imageUri,
                 contentDescription = pokemonCard.name,
                 placeholder = painterResource(R.drawable.pokemon_card_back_side),
                 modifier = Modifier
@@ -58,9 +58,9 @@ internal fun InventoryCardDetailScreen(uiState: InventoryCardDetailUiState, onTi
         }
 
     } ?: run {
-        // TODO: Update to error screen
-        val context = LocalContext.current
-        Toast.makeText(context, "Unable to load pokemon card.", Toast.LENGTH_SHORT).show()
+        // TODO: Update to error screen and loading screen
+//        val context = LocalContext.current
+//        Toast.makeText(context, "Unable to load pokemon card.", Toast.LENGTH_SHORT).show()
     }
 }
 

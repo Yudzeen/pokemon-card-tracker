@@ -4,15 +4,18 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.room)
 }
 
 android {
     namespace = "com.yudzeen.pokemoncardtracker"
     compileSdk = 37
 
+    room.schemaDirectory("$projectDir/schemas")
+
     defaultConfig {
         applicationId = "com.yudzeen.pokemoncardtracker"
-        minSdk = 25
+        minSdk = 30
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -22,6 +25,7 @@ android {
 
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("debug")   // Forces the release build to use the default debug key, use different key if releasing to production
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -36,6 +40,10 @@ android {
     buildFeatures {
         compose = true
     }
+}
+
+hilt {
+    enableAggregatingTask = true
 }
 
 dependencies {
@@ -86,4 +94,9 @@ dependencies {
 
     implementation(libs.material)
     implementation(libs.androidx.compose.material)
+
+    // Room
+    ksp(libs.room.compiler)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
 }
