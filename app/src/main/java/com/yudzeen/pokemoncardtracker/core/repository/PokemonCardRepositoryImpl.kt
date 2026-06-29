@@ -23,8 +23,8 @@ class PokemonCardRepositoryImpl @Inject constructor(
         return pokemonCardDao.getAll().map { list -> list.map { it.toModel() } }
     }
 
-    override suspend fun getById(id: UUID): PokemonCard {
-        return pokemonCardDao.getById(id).toModel()
+    override fun getById(id: UUID): Flow<PokemonCard> {
+        return pokemonCardDao.getById(id).map { it.toModel() }
     }
 
     override suspend fun insert(pokemonCard: PokemonCard) {
@@ -41,5 +41,13 @@ class PokemonCardRepositoryImpl @Inject constructor(
 
     override suspend fun deleteByIds(ids: List<UUID>) {
         pokemonCardDao.deleteByIds(ids)
+    }
+
+    override suspend fun updateOwnedQuantity(cardId: UUID, newValue: Int) {
+        pokemonCardDao.updateOwnedQuantity(cardId, newValue)
+    }
+
+    override suspend fun updateTargetQuantity(cardId: UUID, newValue: Int) {
+        pokemonCardDao.updateTargetQuantity(cardId, newValue)
     }
 }

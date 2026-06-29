@@ -1,6 +1,5 @@
 package com.yudzeen.pokemoncardtracker.feature.inventory.detail
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +14,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,16 +21,21 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.yudzeen.pokemoncardtracker.R
 import com.yudzeen.pokemoncardtracker.core.model.sampleList
+import com.yudzeen.pokemoncardtracker.ui.views.Counter
 
 @Composable
 fun InventoryCardDetailScreen(viewModel: InventoryCardDetailViewModel, onTitleChanged: (String) -> Unit) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    InventoryCardDetailScreen(uiState, onTitleChanged)
+    InventoryCardDetailScreen(uiState, onTitleChanged, viewModel::handleIntent)
 }
 
 @Composable
-internal fun InventoryCardDetailScreen(uiState: InventoryCardDetailUiState, onTitleChanged: (String) -> Unit) {
+internal fun InventoryCardDetailScreen(
+    uiState: InventoryCardDetailUiState,
+    onTitleChanged: (String) -> Unit,
+    handleIntent: (InventoryCardDetailIntent) -> Unit
+) {
     uiState.pokemonCard?.let { pokemonCard ->
         onTitleChanged(pokemonCard.name)
         Column (
@@ -52,9 +55,20 @@ internal fun InventoryCardDetailScreen(uiState: InventoryCardDetailUiState, onTi
                     .align(Alignment.CenterHorizontally)
             )
             Text("Name: ${pokemonCard.name}")
-            Text("Owned: ${pokemonCard.ownedQuantity}")
-            Text("Target: ${pokemonCard.targetQuantity}")
+            Counter(
+                label = "Owned:",
+                value = pokemonCard.ownedQuantity,
+                onValueChange = { handleIntent(InventoryCardDetailIntent.UpdateOwnedQuantity(it)) }
+            )
+            Counter(
+                label = "Target:",
+                value = pokemonCard.targetQuantity,
+                onValueChange = { handleIntent(InventoryCardDetailIntent.UpdateTargetQuantity(it)) }
+            )
             Text("Series: ${pokemonCard.series}")
+            Text("Expansion: ${pokemonCard.expansion}")
+            Text("Variant: ${pokemonCard.variant}")
+            Text("Category: ${pokemonCard.category}")
         }
 
     } ?: run {
@@ -70,5 +84,5 @@ fun InventoryCardDetailScreenPreview() {
     val uiState = InventoryCardDetailUiState(
         pokemonCard = sampleList.first()
     )
-    InventoryCardDetailScreen(uiState, { })
+    InventoryCardDetailScreen(uiState, { }, { })
 }

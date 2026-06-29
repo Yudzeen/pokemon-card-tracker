@@ -1,18 +1,17 @@
 package com.yudzeen.pokemoncardtracker.feature.inventory.detail
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yudzeen.pokemoncardtracker.core.model.sampleList
 import com.yudzeen.pokemoncardtracker.core.repository.PokemonCardRepository
 import com.yudzeen.pokemoncardtracker.navigation.Route
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.util.UUID
 
@@ -22,14 +21,30 @@ class InventoryCardDetailViewModel @AssistedInject constructor(
     private val pokemonCardRepository: PokemonCardRepository
 ): ViewModel() {
 
-    private val _uiState = MutableStateFlow(InventoryCardDetailUiState())
-    val uiState = _uiState.asStateFlow()
+    val uiState: StateFlow<InventoryCardDetailUiState> = pokemonCardRepository.getById(UUID.fromString(navKey.cardId))
+        .map { InventoryCardDetailUiState(it) }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = InventoryCardDetailUiState()
+        )
 
-    init {
-        Log.d("InventoryCardDetailViewModel", "NavKey: ${navKey.cardId}")
+    fun handleIntent(intent: InventoryCardDetailIntent) {
+        when (intent) {
+            is InventoryCardDetailIntent.UpdateOwnedQuantity -> updateOwnedQuantity(intent.newValue)
+            is InventoryCardDetailIntent.UpdateTargetQuantity -> updateTargetQuantity(intent.newValue)
+        }
+    }
+
+    private fun updateOwnedQuantity(newValue: Int) {
         viewModelScope.launch {
-            val pokemonCard = pokemonCardRepository.getById(UUID.fromString(navKey.cardId))
-            _uiState.update { it.copy(pokemonCard = pokemonCard) }
+            pokemonCardRepository.updateOwnedQuantity(UUID.fromString(navKey.cardId), newValue)
+        }
+    }
+
+    private fun updateTargetQuantity(newValue: Int) {
+        viewModelScope.launch {
+            pokemonCardRepository.updateTargetQuantity(UUID.fromString(navKey.cardId), newValue)
         }
     }
 
