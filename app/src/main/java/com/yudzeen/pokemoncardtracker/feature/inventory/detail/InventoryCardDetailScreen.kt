@@ -1,19 +1,25 @@
 package com.yudzeen.pokemoncardtracker.feature.inventory.detail
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -44,16 +50,34 @@ internal fun InventoryCardDetailScreen(
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-            AsyncImage(
-                model = pokemonCard.imageUri,
-                contentDescription = pokemonCard.name,
-                placeholder = painterResource(R.drawable.pokemon_card_back_side),
+            Box(
                 modifier = Modifier
-                    .height(200.dp)
-                    .aspectRatio(63f/88f)
-                    .clip(RoundedCornerShape(8.dp))
-                    .align(Alignment.CenterHorizontally)
-            )
+                    .fillMaxWidth()
+                    .background(Color.LightGray)
+            ) {
+                AsyncImage(
+                    model = pokemonCard.imageUri,
+                    contentDescription = pokemonCard.name,
+                    placeholder = painterResource(R.drawable.pokemon_card_back_side),
+                    modifier = Modifier
+                        .height(200.dp)
+                        .aspectRatio(63f/88f)
+                        .clip(RoundedCornerShape(8.dp))
+                        .align(Alignment.Center)
+                        .padding(2.dp)
+                )
+                IconButton(
+                    onClick = { handleIntent(InventoryCardDetailIntent.ToggleFavorite) },
+                    modifier = Modifier.align(Alignment.TopEnd)
+                ) {
+                    val drawableRes = if (uiState.pokemonCard.favorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite_outline
+                    Icon(
+                        painter = painterResource(drawableRes),
+                        contentDescription = "Favorite",
+                    )
+                }
+            }
+
             Text("Name: ${pokemonCard.name}")
             Counter(
                 label = "Owned:",

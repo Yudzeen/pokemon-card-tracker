@@ -13,5 +13,6 @@ interface PokemonCardRepository {
     suspend fun deleteByIds(ids: List<UUID>)
     suspend fun updateOwnedQuantity(cardId: UUID, newValue: Int)
     suspend fun updateTargetQuantity(cardId: UUID, newValue: Int)
+    suspend fun toggleFavorite(cardId: UUID)
 
 }

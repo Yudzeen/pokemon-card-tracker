@@ -35,4 +35,7 @@ interface PokemonCardDao {
     @Query("UPDATE pokemon_card SET target_quantity = :newValue WHERE id = :cardId")
     suspend fun updateTargetQuantity(cardId: UUID, newValue: Int)
 
+    @Query("UPDATE pokemon_card SET favorite = NOT favorite WHERE id = :cardId")
+    suspend fun toggleFavorite(cardId: UUID)
+
 }

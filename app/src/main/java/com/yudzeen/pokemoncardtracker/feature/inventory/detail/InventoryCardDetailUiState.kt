@@ -9,4 +9,5 @@ data class InventoryCardDetailUiState(
 sealed interface InventoryCardDetailIntent {
     data class UpdateOwnedQuantity(val newValue: Int): InventoryCardDetailIntent
     data class UpdateTargetQuantity(val newValue: Int): InventoryCardDetailIntent
+    data object ToggleFavorite: InventoryCardDetailIntent
 }

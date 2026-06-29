@@ -33,6 +33,7 @@ class InventoryCardDetailViewModel @AssistedInject constructor(
         when (intent) {
             is InventoryCardDetailIntent.UpdateOwnedQuantity -> updateOwnedQuantity(intent.newValue)
             is InventoryCardDetailIntent.UpdateTargetQuantity -> updateTargetQuantity(intent.newValue)
+            InventoryCardDetailIntent.ToggleFavorite -> toggleFavorite()
         }
     }
 
@@ -45,6 +46,12 @@ class InventoryCardDetailViewModel @AssistedInject constructor(
     private fun updateTargetQuantity(newValue: Int) {
         viewModelScope.launch {
             pokemonCardRepository.updateTargetQuantity(UUID.fromString(navKey.cardId), newValue)
+        }
+    }
+
+    private fun toggleFavorite() {
+        viewModelScope.launch {
+            pokemonCardRepository.toggleFavorite(UUID.fromString(navKey.cardId))
         }
     }
 

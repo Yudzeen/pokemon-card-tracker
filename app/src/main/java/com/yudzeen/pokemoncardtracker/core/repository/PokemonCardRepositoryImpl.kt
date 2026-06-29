@@ -50,4 +50,8 @@ class PokemonCardRepositoryImpl @Inject constructor(
     override suspend fun updateTargetQuantity(cardId: UUID, newValue: Int) {
         pokemonCardDao.updateTargetQuantity(cardId, newValue)
     }
+
+    override suspend fun toggleFavorite(cardId: UUID) {
+        pokemonCardDao.toggleFavorite(cardId)
+    }
 }
