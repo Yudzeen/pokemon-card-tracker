@@ -39,7 +39,7 @@ fun PokemonCardListItem(pokemonCard: PokemonCard, onItemClick: (String) -> Unit,
             .padding(4.dp)
     ) {
         Box() {
-            AsyncImage(
+            AsyncImage( // TODO: Lessen rounded corners
                 model = pokemonCard.imageUri,
                 contentDescription = pokemonCard.name,
                 placeholder = painterResource(R.drawable.pokemon_card_back_side),
