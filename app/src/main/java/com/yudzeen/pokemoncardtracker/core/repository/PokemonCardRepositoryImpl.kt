@@ -23,8 +23,8 @@ class PokemonCardRepositoryImpl @Inject constructor(
         return pokemonCardDao.getAll().map { list -> list.map { it.toModel() } }
     }
 
-    override fun getById(id: UUID): Flow<PokemonCard> {
-        return pokemonCardDao.getById(id).map { it.toModel() }
+    override fun getById(id: UUID): Flow<PokemonCard?> {
+        return pokemonCardDao.getById(id).map { it?.toModel() }
     }
 
     override suspend fun insert(pokemonCard: PokemonCard) {
@@ -36,6 +36,12 @@ class PokemonCardRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteById(id: UUID) {
+        val deleted = withContext(ioDispatcher) {
+            cardImageService.deleteCardImage(id)
+        }
+        if (!deleted) {
+            throw IllegalStateException("Unable to delete image file of card: $id")
+        }
         pokemonCardDao.deleteById(id)
     }
 

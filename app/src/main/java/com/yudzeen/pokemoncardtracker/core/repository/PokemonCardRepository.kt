@@ -7,7 +7,7 @@ import java.util.UUID
 interface PokemonCardRepository {
 
     fun getAll(): Flow<List<PokemonCard>>
-    fun getById(id: UUID): Flow<PokemonCard>
+    fun getById(id: UUID): Flow<PokemonCard?>
     suspend fun insert(pokemonCard: PokemonCard)
     suspend fun deleteById(id: UUID)
     suspend fun deleteByIds(ids: List<UUID>)

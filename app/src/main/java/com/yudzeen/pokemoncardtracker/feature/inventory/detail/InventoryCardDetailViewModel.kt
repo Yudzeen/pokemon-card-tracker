@@ -8,9 +8,11 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.util.UUID
@@ -29,11 +31,15 @@ class InventoryCardDetailViewModel @AssistedInject constructor(
             initialValue = InventoryCardDetailUiState()
         )
 
+    private val _uiEvent = Channel<InventoryCardDetailEvent>()   // TODO: Anti-pattern
+    val uiEvent = _uiEvent.receiveAsFlow()
+
     fun handleIntent(intent: InventoryCardDetailIntent) {
         when (intent) {
             is InventoryCardDetailIntent.UpdateOwnedQuantity -> updateOwnedQuantity(intent.newValue)
             is InventoryCardDetailIntent.UpdateTargetQuantity -> updateTargetQuantity(intent.newValue)
             InventoryCardDetailIntent.ToggleFavorite -> toggleFavorite()
+            InventoryCardDetailIntent.DeleteCard -> deleteCard()
         }
     }
 
@@ -52,6 +58,13 @@ class InventoryCardDetailViewModel @AssistedInject constructor(
     private fun toggleFavorite() {
         viewModelScope.launch {
             pokemonCardRepository.toggleFavorite(UUID.fromString(navKey.cardId))
+        }
+    }
+
+    private fun deleteCard() {
+        viewModelScope.launch {
+            pokemonCardRepository.deleteById(UUID.fromString(navKey.cardId))
+            _uiEvent.send(InventoryCardDetailEvent.CardDeleted)
         }
     }
 

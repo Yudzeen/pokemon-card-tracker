@@ -1,5 +1,6 @@
 package com.yudzeen.pokemoncardtracker
 
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -11,6 +12,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,23 +36,24 @@ import com.yudzeen.pokemoncardtracker.feature.inventory.detail.InventoryCardDeta
 import com.yudzeen.pokemoncardtracker.feature.inventory.list.InventoryCardListScreen
 import com.yudzeen.pokemoncardtracker.feature.inventory.list.InventoryCardListViewModel
 import com.yudzeen.pokemoncardtracker.navigation.Route
+import com.yudzeen.pokemoncardtracker.ui.views.ifNotNull
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
-    var appBarTitle by remember { mutableStateOf("Pokemon Card Tracker") }
     val backStack = rememberNavBackStack(Route.InventoryCardListRoute)
     val canNavigateBack = backStack.size > 1
     var onFabClick by remember { mutableStateOf({}) }
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    var topAppBarState by remember { mutableStateOf(TopAppBarState()) }
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(appBarTitle)
+                    Text(topAppBarState.title)
                 },
-                scrollBehavior = scrollBehavior,
+                actions = topAppBarState.actions,
+                scrollBehavior = topAppBarState.scrollBehavior,
                 navigationIcon = {
                     if (canNavigateBack) {
                         IconButton(
@@ -92,7 +95,9 @@ fun MainScreen() {
         },
         modifier = Modifier
             .fillMaxSize()
-            .nestedScroll(scrollBehavior.nestedScrollConnection)
+            .ifNotNull(topAppBarState.scrollBehavior) { scrollBehavior ->
+                nestedScroll(scrollBehavior.nestedScrollConnection)
+            }
     ) { innerPadding ->
         NavDisplay(
             backStack = backStack,
@@ -103,9 +108,9 @@ fun MainScreen() {
             entryProvider = entryProvider {
                 entry<Route.InventoryCardListRoute> {
                     val viewModel: InventoryCardListViewModel = hiltViewModel()
-                    appBarTitle = "Pokemon Card Tracker"
                     InventoryCardListScreen(
                         viewModel = viewModel,
+                        updateTopAppBar = { topAppBarState = it },
                         onItemClick = { cardId ->
                             backStack.add(Route.InventoryCardDetailRoute(cardId))
                         }
@@ -115,15 +120,15 @@ fun MainScreen() {
                     val viewModel = hiltViewModel<InventoryCardDetailViewModel, InventoryCardDetailViewModel.Factory>(
                         creationCallback = { factory -> factory.create(key) }
                     )
-                    appBarTitle = "Card Detail"
                     InventoryCardDetailScreen(
                         viewModel = viewModel,
-                        onTitleChanged = { appBarTitle = it }
+                        updateTopAppBar = { topAppBarState = it },
+                        onCardDeleted = { backStack.removeLastOrNull() }
                     )
                 }
                 entry<Route.InventoryCardAddRoute> { key ->
                     val viewModel: InventoryAddCardViewModel = hiltViewModel()
-                    appBarTitle = "Add Card"
+                    topAppBarState = TopAppBarState("Add Card")
                     onFabClick = { viewModel.save() }
                     InventoryAddCardScreen(
                         viewModel = viewModel,
@@ -138,3 +143,10 @@ fun MainScreen() {
         )
     }
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+data class TopAppBarState(
+    val title: String = "",
+    val actions: @Composable RowScope.() -> Unit = {},
+    val scrollBehavior: TopAppBarScrollBehavior? = null
+)

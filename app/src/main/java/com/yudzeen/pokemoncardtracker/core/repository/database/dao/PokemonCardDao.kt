@@ -15,7 +15,7 @@ interface PokemonCardDao {
     fun getAll(): Flow<List<PokemonCardEntity>>
 
     @Query("SELECT * FROM pokemon_card WHERE id = :id")
-    fun getById(id: UUID): Flow<PokemonCardEntity>
+    fun getById(id: UUID): Flow<PokemonCardEntity?>
 
     @Insert
     suspend fun insert(pokemonCard: PokemonCardEntity)

@@ -5,4 +5,5 @@ import java.util.UUID
 
 interface CardImageService {
     fun saveCardImage(sourceUri: Uri, cardId: UUID): Uri
+    fun deleteCardImage(cardId: UUID): Boolean
 }

@@ -34,6 +34,11 @@ class CardImageServiceImpl @Inject constructor(
         return destinationFile.toUri()
     }
 
+    override fun deleteCardImage(cardId: UUID): Boolean {
+        val imageFile = getCardImageFile(cardId)
+        return imageFile.delete()
+    }
+
     private fun getCardImageFile(cardId: UUID): File {
         val fileName = IMAGE_PREFIX + cardId.toString() + IMAGE_SUFFIX
         return File(context.filesDir, fileName)
