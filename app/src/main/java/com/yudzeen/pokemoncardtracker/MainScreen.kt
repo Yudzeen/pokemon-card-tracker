@@ -18,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -41,6 +42,7 @@ fun MainScreen() {
     val backStack = rememberNavBackStack(Route.InventoryCardListRoute)
     val canNavigateBack = backStack.size > 1
     var onFabClick by remember { mutableStateOf({}) }
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     Scaffold(
         topBar = {
@@ -48,6 +50,7 @@ fun MainScreen() {
                 title = {
                     Text(appBarTitle)
                 },
+                scrollBehavior = scrollBehavior,
                 navigationIcon = {
                     if (canNavigateBack) {
                         IconButton(
@@ -64,7 +67,7 @@ fun MainScreen() {
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary                            )
+                    titleContentColor = MaterialTheme.colorScheme.primary)
             )
         },
         floatingActionButton = {
@@ -87,7 +90,9 @@ fun MainScreen() {
                 else -> {}
             }
         },
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .nestedScroll(scrollBehavior.nestedScrollConnection)
     ) { innerPadding ->
         NavDisplay(
             backStack = backStack,
